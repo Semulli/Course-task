@@ -5,17 +5,13 @@
         { id: "squirtle", name: "Squirtle", emoji: "💧" },
       ];
 
-      // winsAgainst: kim kimi udur
-      // bulbasaur beats squirtle
-      // charmander beats bulbasaur
-      // squirtle beats charmander
+    
       const WINS_AGAINST = {
         bulbasaur: "squirtle",
         charmander: "bulbasaur",
         squirtle: "charmander",
       };
 
-      // --- DOM refs ---
       const choicesEl = document.getElementById("choices");
       const youEmoji = document.getElementById("youEmoji");
       const youName = document.getElementById("youName");
@@ -29,27 +25,23 @@
 
       const youScoreEl = document.getElementById("youScore");
       const cpuScoreEl = document.getElementById("cpuScore");
-      const bestStreakEl = document.getElementById("bestStreak");
       const resetBtn = document.getElementById("resetBtn");
 
       // --- BOM: localStorage ---
       const STORAGE_KEY = "pokemon_battle_state_v1";
-      const BEST_STREAK_KEY = "pokemon_battle_best_streak_v1";
 
       let state = loadState();
-      let currentStreak = state.currentStreak ?? 0;
+ 
 
       // --- init ---
       renderChoices();
       syncScoreUI();
-      bestStreakEl.textContent = String(getBestStreak());
 
       resetBtn.addEventListener("click", () => {
-        const ok = window.confirm("Score və streak sıfırlansın?");
+        const ok = window.confirm("Score sıfırlansın?");
         if (!ok) return;
 
-        state = { you: 0, cpu: 0, currentStreak: 0 };
-        currentStreak = 0;
+        state = { you: 0, cpu: 0 };
         saveState(state);
 
         youEmoji.textContent = "❔";
@@ -94,7 +86,7 @@
         // CPU "thinking" (BOM: setTimeout)
         cpuHint.textContent = "Thinking...";
         cpuEmoji.textContent = "⏳";
-        cpuName.textContent = "CPU";
+        cpuName.textContent = "Comp";
 
         setTimeout(() => {
           cpuEmoji.textContent = cpu.emoji;
@@ -105,21 +97,15 @@
 
           if (outcome === "win") {
             state.you++;
-            currentStreak++;
-            state.currentStreak = currentStreak;
 
-            // best streak update
-            const best = getBestStreak();
-            if (currentStreak > best) setBestStreak(currentStreak);
+           
 
-            // BOM: alert (istəsən comment edə bilərsən)
-            // window.alert("You win!");
+
+            
 
             setResult("You WIN! 🎉", "win");
           } else if (outcome === "lose") {
             state.cpu++;
-            currentStreak = 0;
-            state.currentStreak = 0;
             setResult("You LOSE 😅", "lose");
           } else {
             // draw
@@ -128,7 +114,6 @@
 
           saveState(state);
           syncScoreUI();
-          bestStreakEl.textContent = String(getBestStreak());
         }, 450);
       }
 
@@ -153,14 +138,14 @@
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           const parsed = raw ? JSON.parse(raw) : null;
-          if (!parsed || typeof parsed !== "object") return { you: 0, cpu: 0, currentStreak: 0 };
+          if (!parsed || typeof parsed !== "object") return { you: 0, cpu: 0 };
           return {
             you: Number(parsed.you) || 0,
             cpu: Number(parsed.cpu) || 0,
-            currentStreak: Number(parsed.currentStreak) || 0,
+           
           };
         } catch {
-          return { you: 0, cpu: 0, currentStreak: 0 };
+          return { you: 0, cpu: 0}
         }
       }
 
@@ -168,11 +153,6 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
       }
 
-      function getBestStreak() {
-        const n = Number(localStorage.getItem(BEST_STREAK_KEY));
-        return Number.isFinite(n) ? n : 0;
-      }
+     
 
-      function setBestStreak(n) {
-        localStorage.setItem(BEST_STREAK_KEY, String(n));
-      }
+     
