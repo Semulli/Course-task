@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start — Pokemon Mini Game</title>
+
+    <!-- Bootstrap (Badge üçün) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        background: #0f1220;
+        color: #eef0ff;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 520px;
+        color: white;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 22px;
+        text-align: center;
+      }
+
+      /* Start düymə hissəsi */
+      .start-wrap {
+        display: grid;
+        gap: 10px;
+        place-items: center;
+      }
+
+      button {
+        border: 0;
+        border-radius: 14px;
+        padding: 12px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        background: #d6b4ff;
+        color: #0f1220;
+        width: 100%;
+        max-width: 220px;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .small {
+        opacity: 0.7;
+        font-size: 12px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <h1 style="margin: 0 0 8px">Pokemon Mini Game</h1>
+      <p style="margin: 0 0 18px; opacity: 0.9">
+        Start düyməsinə bas → loading badge görünsün → oyun açılsın.
+      </p>
+
+      <div class="start-wrap">
+        <!-- Bootstrap Badge (başlanğıcda gizlidir) -->
+        <span id="loadingBadge" class="badge rounded-pill text-bg-warning d-none">
+          Loading 0%
+        </span>
+
+        <button id="startBtn">Start</button>
+      </div>
+
+      <div class="small">
+        İstəsən, browser badge (tab/app badge) də işləyə bilər, amma əsas badge burada görünür.
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #0f1220;
+  color: #eef0ff;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.app {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin: 0 0 18px;
+  opacity: 0.85;
+}
+
+.controls {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.task-form input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.25);
+  color: #eef0ff;
+  padding: 12px 12px;
+  border-radius: 12px;
+  outline: none;
+}
+
+.task-form input::placeholder {
+  color: rgba(238, 240, 255, 0.65);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f1220;
+}
+
+.btn.primary {
+  background: #d6b4ff;
+}
+
+.btn.danger {
+  background: #ffb4c6;
+}
+
+.list-wrap {
+  margin-top: 6px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-title {
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.task.done .task-title {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eef0ff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.empty {
+  margin: 14px 0 0;
+  opacity: 0.8;
+  text-align: center;
+}
